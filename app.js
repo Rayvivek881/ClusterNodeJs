@@ -33,6 +33,7 @@ if (cluster.isMaster) {
     }
     cluster.on('exit', (worker, code, signal) => {
         console.log(`worker ${worker.process.pid} died`);
+        cluster.fork();
     });
 } else {
     app.listen(3000, () => console.log('port 3000 is listening by worker ' + process.pid));
